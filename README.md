@@ -19,7 +19,15 @@ while (graphIt.hasNext()) {
     ...
 }
 ```
-4. Next, iterate over the Block object and go through the statements. 
+4. Use Following API to retrieve all the successor(s) of the basic blocs. (Tip: you will get multiple successors for branch)
+```java
+List<Block> successors = block.getSuccs();
+```
+5. Use Following API to get all the predecessor(s) of the basic block. 
+```java
+List<Block> predecessors = block.getPreds();
+```
+6. Next, iterate over the Block object and go through the statements. 
 ```java
 Iterator<Unit> blockIt = block.iterator();  
 while (blockIt.hasNext()) {  
@@ -27,7 +35,7 @@ while (blockIt.hasNext()) {
     ...  
 }
 ```
-5. Soot Provides a special data structure ***FlowSet***,  Which provides basic set operations such as Union between two sets. 
+7. Soot Provides a special data structure ***FlowSet***,  Which provides basic set operations such as Union between two sets. 
 ```java
 // import soot.toolkits.scalar.FlowSet;
 // import soot.toolkits.scalar.ArraySparseSet;
@@ -39,7 +47,7 @@ FlowSet<T> thirdSet = new ArraySparseSet<T>(); //keep this object empty to store
 
 firstSet.union(secondSet, thirdSet); // writes Union (firstSet+secondSet) to thirdSet
 ```
-6. Similarly, intersection and difference operations can be performed. 
+8. Similarly, intersection and difference operations can be performed. 
 ```java
 firstSet.difference(secondSet, thirdSet); // writes difference (firstSet-secondSet) to thirdSet
 firstSet.intersection(secondSet, thirdSet); // writes Common elements of both sets to thirdSet
